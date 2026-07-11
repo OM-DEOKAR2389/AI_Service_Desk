@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<section class="login-section d-flex align-items-center">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-5 col-md-7">
+
+                <div class="login-card">
+
+                    <div class="text-center mb-4">
+
+                        <img src="{% static 'images/logo.png' %}" height="55">
+
+                        <h2 class="fw-bold mt-3">
+                            Welcome Back
+                        </h2>
+
+                        <p class="text-muted">
+                            Sign in to continue to TicketNova
+                        </p>
+
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Username
+                            </label>
+
+                            <input type="text" name="username" class="form-control form-control-lg"
+                                placeholder="Enter Username">
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Password
+                            </label>
+
+                            <input type="password" name="password" class="form-control form-control-lg"
+                                placeholder="Enter Password">
+
+                        </div>
+
+                        <button class="btn btn-primary w-100 btn-lg">
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
