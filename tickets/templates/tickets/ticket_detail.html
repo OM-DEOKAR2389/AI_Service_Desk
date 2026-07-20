@@ -1,0 +1,169 @@
+{% extends 'dashboard/user_base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">Ticket Details</h2>
+
+            <p class="text-muted">
+                View complete information about your support ticket.
+            </p>
+
+        </div>
+
+        <a href="{% url 'my_tickets' %}" class="btn btn-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Ticket ID
+                    </label>
+
+                    <h5>#{{ ticket.id }}</h5>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Created Date
+                    </label>
+
+                    <h5>{{ ticket.created_at|date:"d M Y" }}</h5>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Title
+                    </label>
+
+                    <h5>{{ ticket.title }}</h5>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Category
+                    </label>
+
+                    <h5>{{ ticket.category }}</h5>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Priority
+                    </label>
+
+                    <br>
+
+                    {% if ticket.priority == 'High' %}
+
+                    <span class="badge bg-danger fs-6">
+
+                        High
+
+                    </span>
+
+                    {% elif ticket.priority == 'Medium' %}
+
+                    <span class="badge bg-warning text-dark fs-6">
+
+                        Medium
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-success fs-6">
+
+                        Low
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Status
+                    </label>
+
+                    <br>
+
+                    {% if ticket.status == 'Open' %}
+
+                    <span class="badge bg-primary fs-6">
+
+                        Open
+
+                    </span>
+
+                    {% elif ticket.status == 'In Progress' %}
+
+                    <span class="badge bg-warning text-dark fs-6">
+
+                        In Progress
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-success fs-6">
+
+                        Resolved
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="col-12">
+
+                    <label class="fw-bold text-muted">
+                        Description
+                    </label>
+
+                    <div class="border rounded p-3 bg-light mt-2">
+
+                        {{ ticket.description }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
