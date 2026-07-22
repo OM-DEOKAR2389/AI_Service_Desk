@@ -9,7 +9,21 @@ class Ticket(models.Model):
         ('In Progress', 'In Progress'),
         ('Resolved', 'Resolved'),
     ]
-
+    
+    assigned_engineer = models.ForeignKey(
+    User,
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name='assigned_tickets',
+    limit_choices_to={'role': 'Engineer'}
+    )
+    
+    resolution = models.TextField(
+    blank=True,
+    null=True
+    )
+    
     PRIORITY_CHOICES = [
         ('Low', 'Low'),
         ('Medium', 'Medium'),

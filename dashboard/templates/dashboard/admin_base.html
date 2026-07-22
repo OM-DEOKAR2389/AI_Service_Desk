@@ -11,8 +11,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
 
@@ -20,179 +19,176 @@
 
 <body>
 
-<div class="mobile-header">
+    <div class="mobile-header">
 
-    <button id="menu-btn">
-        <i class="bi bi-list"></i>
-    </button>
+        <button id="menu-btn">
+            <i class="bi bi-list"></i>
+        </button>
 
-    <h4>🎫 TicketNova</h4>
+        <h4>🎫 TicketNova</h4>
 
-</div>
+    </div>
 
-<div class="overlay" id="overlay"></div>
+    <div class="overlay" id="overlay"></div>
 
-<div class="wrapper">
+    <div class="wrapper">
 
-    <!-- Sidebar -->
+        <!-- Sidebar -->
 
-    <aside class="sidebar" id="sidebar">
+        <aside class="sidebar" id="sidebar">
 
-        <div class="logo">
+            <div class="logo">
 
-            <h3>🎫 TicketNova</h3>
+                <h3>🎫 TicketNova</h3>
 
-            <span>Admin Panel</span>
-
-        </div>
-
-        <ul>
-
-            <li>
-
-                <a href="{% url 'admin_dashboard' %}">
-
-                    <i class="bi bi-grid-fill"></i>
-
-                    Dashboard
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="{% url 'add_user' %}">
-
-                    <i class="bi bi-person-plus-fill"></i>
-
-                    Add User
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="{% url 'user_list' %}">
-
-                    <i class="bi bi-people-fill"></i>
-
-                    View Users
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#">
-
-                    <i class="bi bi-ticket-detailed-fill"></i>
-
-                    Tickets
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#">
-
-                    <i class="bi bi-person-workspace"></i>
-
-                    Engineers
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#">
-
-                    <i class="bi bi-bar-chart-fill"></i>
-
-                    Reports
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="{% url 'logout' %}">
-
-                    <i class="bi bi-box-arrow-right"></i>
-
-                    Logout
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </aside>
-
-    <main class="main-content">
-
-        <nav class="topbar">
-
-            <h4>Dashboard</h4>
-
-            <div class="profile">
-
-                <i class="bi bi-bell-fill"></i>
-
-                <img src="https://ui-avatars.com/api/?name={{request.user.username}}&background=0D6EFD&color=fff">
-
-                <span>{{request.user.username}}</span>
+                <span>Admin Panel</span>
 
             </div>
 
-        </nav>
+            <ul>
 
-        <div class="content">
+                <li>
 
-            {% block content %}
+                    <a href="{% url 'admin_dashboard' %}">
 
-            {% endblock %}
+                        <i class="bi bi-grid-fill"></i>
 
-        </div>
+                        Dashboard
 
-    </main>
+                    </a>
 
-</div>
+                </li>
 
-<script>
+                <li>
 
-const menu=document.getElementById("menu-btn");
+                    <a href="{% url 'add_user' %}">
 
-const sidebar=document.getElementById("sidebar");
+                        <i class="bi bi-person-plus-fill"></i>
 
-const overlay=document.getElementById("overlay");
+                        Add User
 
-menu.onclick=function(){
+                    </a>
 
-sidebar.classList.toggle("show");
+                </li>
 
-overlay.classList.toggle("show");
+                <li>
 
-}
+                    <a href="{% url 'user_list' %}">
 
-overlay.onclick=function(){
+                        <i class="bi bi-people-fill"></i>
 
-sidebar.classList.remove("show");
+                        View Users
 
-overlay.classList.remove("show");
+                    </a>
 
-}
+                </li>
 
-</script>
+                <li>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+                    <a href="{% url 'all_tickets' %}">
+                        <i class="bi bi-ticket-detailed-fill"></i>
+                        Tickets
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#">
+
+                        <i class="bi bi-person-workspace"></i>
+
+                        Engineers
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#">
+
+                        <i class="bi bi-bar-chart-fill"></i>
+
+                        Reports
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'logout' %}">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <main class="main-content">
+
+            <nav class="topbar">
+
+                <h4>Dashboard</h4>
+
+                <div class="profile">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                    <img src="https://ui-avatars.com/api/?name={{request.user.username}}&background=0D6EFD&color=fff">
+
+                    <span>{{request.user.username}}</span>
+
+                </div>
+
+            </nav>
+
+            <div class="content">
+
+                {% block content %}
+
+                {% endblock %}
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+
+        const menu = document.getElementById("menu-btn");
+
+        const sidebar = document.getElementById("sidebar");
+
+        const overlay = document.getElementById("overlay");
+
+        menu.onclick = function () {
+
+            sidebar.classList.toggle("show");
+
+            overlay.classList.toggle("show");
+
+        }
+
+        overlay.onclick = function () {
+
+            sidebar.classList.remove("show");
+
+            overlay.classList.remove("show");
+
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

@@ -82,27 +82,15 @@
 
                     {% if ticket.priority == 'High' %}
 
-                    <span class="badge bg-danger fs-6">
-
-                        High
-
-                    </span>
+                        <span class="badge bg-danger fs-6">High</span>
 
                     {% elif ticket.priority == 'Medium' %}
 
-                    <span class="badge bg-warning text-dark fs-6">
-
-                        Medium
-
-                    </span>
+                        <span class="badge bg-warning text-dark fs-6">Medium</span>
 
                     {% else %}
 
-                    <span class="badge bg-success fs-6">
-
-                        Low
-
-                    </span>
+                        <span class="badge bg-success fs-6">Low</span>
 
                     {% endif %}
 
@@ -118,31 +106,73 @@
 
                     {% if ticket.status == 'Open' %}
 
-                    <span class="badge bg-primary fs-6">
-
-                        Open
-
-                    </span>
+                        <span class="badge bg-primary fs-6">Open</span>
 
                     {% elif ticket.status == 'In Progress' %}
 
-                    <span class="badge bg-warning text-dark fs-6">
-
-                        In Progress
-
-                    </span>
+                        <span class="badge bg-warning text-dark fs-6">In Progress</span>
 
                     {% else %}
 
-                    <span class="badge bg-success fs-6">
-
-                        Resolved
-
-                    </span>
+                        <span class="badge bg-success fs-6">Resolved</span>
 
                     {% endif %}
 
                 </div>
+
+                <!-- Assigned Engineer -->
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Assigned Engineer
+                    </label>
+
+                    <h5>
+
+                        {% if ticket.assigned_engineer %}
+
+                            {{ ticket.assigned_engineer.username }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                Not Assigned
+                            </span>
+
+                        {% endif %}
+
+                    </h5>
+
+                </div>
+
+                <!-- Resolution -->
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="fw-bold text-muted">
+                        Resolution
+                    </label>
+
+                    <div class="border rounded p-3 bg-light mt-2">
+
+                        {% if ticket.resolution %}
+
+                            {{ ticket.resolution }}
+
+                        {% else %}
+
+                            <span class="text-warning">
+                                Resolution Pending
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <!-- Description -->
 
                 <div class="col-12">
 

@@ -43,6 +43,8 @@
                             <th>Category</th>
                             <th>Priority</th>
                             <th>Status</th>
+                            <th>Engineer</th>
+                            <th>Resolution</th>
                             <th>Date</th>
                             <th>Action</th>
 
@@ -65,13 +67,29 @@
                             <td>
 
                                 {% if ticket.priority == 'High' %}
-                                <span class="badge bg-danger">High</span>
+
+                                    <span class="badge bg-danger">
+
+                                        High
+
+                                    </span>
 
                                 {% elif ticket.priority == 'Medium' %}
-                                <span class="badge bg-warning text-dark">Medium</span>
+
+                                    <span class="badge bg-warning text-dark">
+
+                                        Medium
+
+                                    </span>
 
                                 {% else %}
-                                <span class="badge bg-success">Low</span>
+
+                                    <span class="badge bg-success">
+
+                                        Low
+
+                                    </span>
+
                                 {% endif %}
 
                             </td>
@@ -79,17 +97,65 @@
                             <td>
 
                                 {% if ticket.status == 'Open' %}
-                                <span class="badge bg-primary">Open</span>
+
+                                    <span class="badge bg-primary">
+
+                                        Open
+
+                                    </span>
 
                                 {% elif ticket.status == 'In Progress' %}
-                                <span class="badge bg-warning text-dark">
-                                    In Progress
-                                </span>
+
+                                    <span class="badge bg-warning text-dark">
+
+                                        In Progress
+
+                                    </span>
 
                                 {% else %}
-                                <span class="badge bg-success">
-                                    Resolved
-                                </span>
+
+                                    <span class="badge bg-success">
+
+                                        Resolved
+
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                {% if ticket.assigned_engineer %}
+
+                                    {{ ticket.assigned_engineer.username }}
+
+                                {% else %}
+
+                                    <span class="text-muted">
+
+                                        Not Assigned
+
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                {% if ticket.resolution %}
+
+                                    {{ ticket.resolution|truncatechars:40 }}
+
+                                {% else %}
+
+                                    <span class="text-warning">
+
+                                        Pending
+
+                                    </span>
+
                                 {% endif %}
 
                             </td>
@@ -102,7 +168,8 @@
 
                             <td>
 
-                                <a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-info btn-sm">
+                                <a href="{% url 'ticket_detail' ticket.id %}"
+                                   class="btn btn-info btn-sm">
 
                                     <i class="bi bi-eye-fill"></i>
 
@@ -116,7 +183,7 @@
 
                         <tr>
 
-                            <td colspan="7" class="text-center py-5">
+                            <td colspan="9" class="text-center py-5">
 
                                 <i class="bi bi-ticket-perforated display-5 text-secondary"></i>
 
@@ -132,7 +199,8 @@
 
                                 </p>
 
-                                <a href="{% url 'raise_ticket' %}" class="btn btn-primary">
+                                <a href="{% url 'raise_ticket' %}"
+                                   class="btn btn-primary">
 
                                     Raise Ticket
 

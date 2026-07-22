@@ -12,7 +12,7 @@
             <p class="text-muted">Manage your support tickets from here.</p>
         </div>
 
-        <a href="#" class="btn btn-primary">
+        <a href="{% url 'raise_ticket' %}" class="btn btn-primary">
             <i class="bi bi-plus-circle-fill"></i>
             Raise Ticket
         </a>
@@ -33,7 +33,7 @@
 
                         <h6 class="text-muted">Total Tickets</h6>
 
-                        <h2>12</h2>
+                        <h2>{{ total }}</h2>
 
                     </div>
 
@@ -59,7 +59,7 @@
 
                         <h6 class="text-muted">Open</h6>
 
-                        <h2>4</h2>
+                        <h2>{{ open_ticket }} </h2>
 
                     </div>
 
@@ -85,7 +85,7 @@
 
                         <h6 class="text-muted">In Progress</h6>
 
-                        <h2>5</h2>
+                        <h2>{{ progress }}</h2>
 
                     </div>
 
@@ -111,7 +111,7 @@
 
                         <h6 class="text-muted">Resolved</h6>
 
-                        <h2>3</h2>
+                        <h2>{{ resolved }}</h2>
 
                     </div>
 
@@ -145,7 +145,7 @@
 
                     <p>Create a new support request.</p>
 
-                    <a href="#" class="btn btn-primary">
+                    <a href="{% url 'raise_ticket' %}" class="btn btn-primary">
 
                         Create Ticket
 
@@ -169,7 +169,7 @@
 
                     <p>View your submitted tickets.</p>
 
-                    <a href="#" class="btn btn-success">
+                    <a href="{% url 'my_tickets' %}" class="btn btn-success">
 
                         View Tickets
 
@@ -214,42 +214,35 @@
 
                     <tbody>
 
-                        <tr>
-
-                            <td>#101</td>
-
-                            <td>Laptop Not Working</td>
-
-                            <td><span class="badge bg-danger">High</span></td>
-
-                            <td><span class="badge bg-warning text-dark">Open</span></td>
-
-                        </tr>
+                        {% for ticket in recent_tickets %}
 
                         <tr>
 
-                            <td>#102</td>
+                            <td>#{{ ticket.id }}</td>
 
-                            <td>Email Issue</td>
+                            <td>{{ ticket.title }}</td>
 
-                            <td><span class="badge bg-primary">Medium</span></td>
+                            <td>{{ ticket.user.username }}</td>
 
-                            <td><span class="badge bg-info">In Progress</span></td>
+                            <td>{{ ticket.status }}</td>
+
+                            <td>{{ ticket.created_at|date:"d M Y" }}</td>
 
                         </tr>
+
+                        {% empty %}
 
                         <tr>
 
-                            <td>#103</td>
+                            <td colspan="5" class="text-center">
 
-                            <td>Internet Slow</td>
+                                No Recent Tickets
 
-                            <td><span class="badge bg-success">Low</span></td>
-
-                            <td><span class="badge bg-success">Resolved</span></td>
+                            </td>
 
                         </tr>
 
+                        {% endfor %}
                     </tbody>
 
                 </table>

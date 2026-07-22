@@ -1,0 +1,190 @@
+{% extends 'dashboard/engineer_base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="card shadow border-0">
+
+<div class="card-header bg-primary text-white">
+
+<h4 class="mb-0">
+
+Ticket Details
+
+</h4>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Title
+
+</label>
+
+<input type="text"
+class="form-control"
+value="{{ ticket.title }}"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+User
+
+</label>
+
+<input type="text"
+class="form-control"
+value="{{ ticket.user.username }}"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Category
+
+</label>
+
+<input type="text"
+class="form-control"
+value="{{ ticket.category }}"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Priority
+
+</label>
+
+<input type="text"
+class="form-control"
+value="{{ ticket.priority }}"
+readonly>
+
+</div>
+
+<div class="col-12 mb-3">
+
+<label class="fw-bold">
+
+Description
+
+</label>
+
+<textarea
+class="form-control"
+rows="5"
+readonly>{{ ticket.description }}</textarea>
+
+</div>
+
+<form method="POST">
+
+{% csrf_token %}
+<div class="col-md-6 mb-3">
+
+    <label class="fw-bold">
+
+        Status
+
+    </label>
+
+    <select name="status" class="form-select">
+
+        <option value="Open"
+            {% if ticket.status == "Open" %}selected{% endif %}>
+            Open
+        </option>
+
+        <option value="In Progress"
+            {% if ticket.status == "In Progress" %}selected{% endif %}>
+            In Progress
+        </option>
+
+        <option value="Resolved"
+            {% if ticket.status == "Resolved" %}selected{% endif %}>
+            Resolved
+        </option>
+
+    </select>
+
+</div>
+<div class="mb-3">
+
+    <label class="form-label fw-bold">
+
+        Resolution
+
+    </label>
+
+    <textarea
+        name="resolution"
+        class="form-control"
+        rows="5"
+        placeholder="Write the solution here...">{{ ticket.resolution }}</textarea>
+
+</div>
+
+<div class="col-12 mb-4">
+
+    <label class="fw-bold">
+
+        Resolution / Comment
+
+    </label>
+
+    <textarea
+        name="resolution"
+        class="form-control"
+        rows="5"
+        placeholder="Write resolution here...">{{ ticket.resolution }}</textarea>
+
+</div>
+
+<div class="col-12">
+
+    <button type="submit" class="btn btn-success">
+
+        <i class="bi bi-check-circle-fill"></i>
+
+        Update Ticket
+
+    </button>
+
+    <a href="{% url 'assigned_tickets' %}"
+        class="btn btn-secondary">
+
+        Back
+
+    </a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
